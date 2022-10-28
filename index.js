@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res){
 	res.status(200).send({
-		message: "https://jsonplaceholder.typicode.com/users"
+		message: "Mensaje de prueba"
 	});
 });
 

@@ -25,7 +25,7 @@ router.post(url, async function (req, res) {
     const name_company = req.body.company.name
 
     const new_address = {id_address: uuidv4(), street, suite, city, zipcode, lat, lng}
-    const new_company = {id_company: uuidv4(), name: name_company, catch_phrase: catchPhrase, bs}
+    const new_company = {id_company: uuidv4(), company_name: name_company, catch_phrase: catchPhrase, bs}
 
     const new_user = {id_user: uuidv4(), name, username, email, phone, website, 
         id_company : new_company.id_company, id_address : new_address.id_address
@@ -43,7 +43,33 @@ router.post(url, async function (req, res) {
 });
 
 router.put(`${url}/:id`, async function (req, res) {
-    res.send('esta ruta es put');
+
+    const { id } = req.params;
+    const {name, username, email, phone, website  } = req.body
+    const {street, suite, city, zipcode} = req.body.address
+    const {lat, lng} = req.body.address.geo
+    const {catchPhrase, bs} = req.body.company
+    const name_company = req.body.company.name
+
+    const update_address = { street, suite, city, zipcode, lat, lng}
+    const update_company = {company_name: name_company, catch_phrase: catchPhrase, bs}
+
+    const update_user = {name, username, email, phone, website}
+
+
+    const script_update_address = sqlFinder('update-address.sql');
+    const script_update_company = sqlFinder('update-company.sql');
+    const script_update_user = sqlFinder('update-user.sql');
+
+
+    await pool.query(script_update_address, [update_address, id]);
+    await pool.query(script_update_company, [update_company, id]);
+    await pool.query(script_update_user, [update_user, id]);
+
+
+    res.send({user: update_user, address: update_address, company: update_company});
+
+
 });
 
 router.delete(`${url}/:id`, async function (req, res) {

@@ -3,7 +3,7 @@ USE antpack;
 
 CREATE TABLE Company(
 	id_company VARCHAR(50) PRIMARY KEY NOT NULL,
-    name VARCHAR(50),
+    company_name VARCHAR(50),
     catch_phrase VARCHAR(100),
     bs VARCHAR(100)
 );

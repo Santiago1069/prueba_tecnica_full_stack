@@ -1,0 +1,1 @@
+UPDATE user SET ? WHERE id_user = ?

@@ -9,8 +9,8 @@ const url = '/users'
 // TODO: create services
 router.get(url, async function (req, res) {
 
-    const script = sqlFinder('get-users.sql')
-    const users = await pool.query(script) 
+    const script_consult_user = sqlFinder('get-users.sql')
+    const users = await pool.query(script_consult_user) 
 
     res.send(users);
 
@@ -42,12 +42,15 @@ router.post(url, async function (req, res) {
     res.send({user: new_user, address: new_address, company: new_company});
 });
 
-router.put(`${url}/:id`, function (req, res) {
+router.put(`${url}/:id`, async function (req, res) {
     res.send('esta ruta es put');
 });
 
-router.delete(`${url}/:id`, function (req, res) {
-    res.send('esta ruta es delete');
+router.delete(`${url}/:id`, async function (req, res) {
+
+    const { id } = req.params;
+    const script_delete_user = sqlFinder('delete-user.sql')
+    await pool.query(script_delete_user, [id]);
 });
 
 module.exports = router;

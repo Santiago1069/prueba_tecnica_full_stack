@@ -7,6 +7,7 @@ function fromDB(user) {
         email: user.email,
         phone: user.phone,
         website: user.website,
+        gravatar: user.gravatar,
         address: {
             street: user.street,
             suite: user.suite,
@@ -35,6 +36,7 @@ function fromData(user, company, address) {
         email: user.email,
         phone: user.phone,
         website: user.website,
+        gravatar: user.gravatar,
         address: {
             street: address.street,
             suite: address.suite,

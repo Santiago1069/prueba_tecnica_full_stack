@@ -1,4 +1,4 @@
-SELECT u.id_user, u.name, u.username, u.email, u.phone, u.website,
+SELECT u.id_user, u.name, u.username, u.email, u.phone, u.website, u.gravatar,
     address.street, address.suite, address.city, address.zipcode, address.lat, address.lng,
     company.company_name, company.catch_phrase, company.bs
 FROM user AS u

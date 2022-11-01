@@ -9,6 +9,7 @@ const user_repository = require('../../repository/user-repository')
 
 const url = '/users'
 
+//the GET request is created so that it consults all the users of the database
 router.get(url, async function (req, res) {
     
     const script_get_user = sql_finder('select-all-users.sql')
@@ -21,6 +22,7 @@ router.get(url, async function (req, res) {
     );
 });
 
+//the GET request is created to query a user by id in the database
 router.get(`${url}/:id`, async function (req, res) {
 
     const {id} = req.params
@@ -34,7 +36,7 @@ router.get(`${url}/:id`, async function (req, res) {
 
 });
 
-
+//The POST request is created to save the user information in the database
 router.post(url, async function (req, res) {
     const {name, username, email, phone, website  } = req.body
     const {street, suite, city, zipcode} = req.body.address
@@ -56,7 +58,7 @@ router.post(url, async function (req, res) {
     );
 });
 
-
+//PUT request is created to update a user by id
 router.put(`${url}/:id`, async function (req, res) {
 
     const { id } = req.params;
@@ -88,7 +90,7 @@ router.put(`${url}/:id`, async function (req, res) {
 
 });
 
-
+//the DELETE request is created to delete a user by id
 router.delete(`${url}/:id`, async function (req, res) {
 
     const { id } = req.params;

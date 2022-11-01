@@ -13,6 +13,7 @@ module.exports = async function() {
     console.log('request typi code users api...')
     console.log(`requesting url: ${url}`)
     
+    //We use fetch to access the data from the API and save it in the database
     fetch(url)
         .then(res => res.json())
         .then(json => {
@@ -25,6 +26,7 @@ module.exports = async function() {
 
 }
 
+//API users are saved in the database
 function save_user(user) {
     const { name, username, email, phone, website } = user;
     const { street, suite, city, zipcode } = user.address;

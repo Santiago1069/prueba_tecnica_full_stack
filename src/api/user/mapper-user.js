@@ -1,4 +1,4 @@
-
+// We give the JSON structure to the database data
 function fromDB(user) {
     const userResponse = {
         id: user.id_user,

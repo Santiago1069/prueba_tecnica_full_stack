@@ -5,6 +5,8 @@ const app = express();
 const consumerApi = require('./consumer-api')
 const usersApi = require('./api/user/users')
 const dotenv = require("dotenv");
+const cors = require('cors');
+
 
 dotenv.config();
 const port = process.env.SERVER_PORT || 3525;
@@ -12,6 +14,8 @@ const port = process.env.SERVER_PORT || 3525;
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors())
+
 
 // load apis
 app.use('/api', usersApi)

@@ -7,17 +7,29 @@ const mapper_user = require('./mapper-user')
 
 const url = '/users'
 
-// TODO: create services
 router.get(url, async function (req, res) {
 
-    const script_consult_user = sql_finder('get-users.sql')
-    const users = await pool.query(script_consult_user) 
+    const script_get_user = sql_finder('get-users.sql')
+    const list_users = await pool.query(script_get_user) 
 
     res.send(
-        users.map(function(user) {
+        list_users.map(function(user) {
             return mapper_user.fromDB(user) 
         })
     );
+});
+
+router.get(`${url}/:id`, async function (req, res) {
+
+    const {id} = req.params
+    const script_consult_users = sql_finder('select-user-by-id.sql')
+    const user = await pool.query(script_consult_users, [id])
+    if(user[0] != null ){
+        res.send( mapper_user.fromDB(user[0]));
+    } else{
+        res.sendStatus(404)
+    }
+
 });
 
 

@@ -20,6 +20,7 @@ CREATE TABLE Address(
 
 CREATE TABLE User( 
 	id_user VARCHAR(50) PRIMARY KEY NOT NULL,
+	gravatar VARCHAR(50),
 	name VARCHAR(100),
 	username VARCHAR(50),
 	email VARCHAR(50),

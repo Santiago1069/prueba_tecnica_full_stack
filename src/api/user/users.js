@@ -95,7 +95,7 @@ router.delete(`${url}/:id`, async function (req, res) {
     const script_delete_user = sql_finder('delete-user.sql')
     await pool.query(script_delete_user, [id]);
 
-    res.sendStatus(200)
+    res.send({})
 });
 
 module.exports = router;
